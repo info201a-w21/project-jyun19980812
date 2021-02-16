@@ -14,6 +14,8 @@ Many people, including members of our group, have noticed a growing concern abou
 
 [Juvenile Justice GPS](http://www.jjgps.org/juvenile-justice-services#risk-assessment?year=2020) is an interactive website that was created to track juvenile justice change across the country to better understand and encourage reform. This website details the variations in juvenile justice laws, policies, and procedures in each state and over time. This website presents this data alongside relevant juvenile justice statistical information in an interactive, visual way.
 
+[Juvenile Justice System Improvement Project](https://cjjr.georgetown.edu/our-work/jjsip/) is a project with the purpose of assisting states in reducing juvenile crime/delinquency as well as improving the outcomes of juvenile offenders. This process happens by implementing the knowledge gained from juvenile justice programs and applying it to everyday practices.
+
 - What data-driven questions do you hope to answer about this domain (share at least 3)?
 
 Some data-driven questions that we hope to answer are:
