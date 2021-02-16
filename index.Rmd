@@ -1,0 +1,55 @@
+---
+title: "Juvenile Crime"
+date: "2/16/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("juvenile_arrest_rate.R")
+```
+
+### Introduction
+Many people, including members of our group, have noticed a growing concern about crimes committed by young adolescents and the rate of juvenile incarceration in the U.S. This provoked our group to research juvenile crime and incarceration, compare the rates of occurrence, and analyze the racial and gender factors that may show inequality in these crimes. We want to ask these questions about patterns in the rates of crime, where these crimes are happening, and who are committing these crimes because this type of information influences government attitudes and policy making.
+
+_Some data-driven questions that we hope to answer are:_
+
+ 1. What are the overall proportions of offenses caused by juveniles?
+
+ 2. What are the demographic characteristics of juvenile arrests?
+
+ 3. Which state or region of the U.S. does juvenile incarceration seem most prevalent?
+ 
+### Summary of Juvenile Crime
+Text goes in here
+Idea about Ryan's summary: Show which state has the lowest and highest incarceration rate
+### Aggregated table of Juvenile Crime
+Text goes in here
+
+### Chart 1
+
+### Chart 2
+
+### Chart on Variation Of Total Juvenile Residential Placement Rates By States
+**Purpose:** 
+- This chart was intended to show the information of the total juvenile residential placement rate in U.S. varied by states in 2017. This chart is to show which state or region the juvenile incarceration seems most prevalent.
+
+**Observations**
+- The residential placement rate is the number of juvenile offenders in residential placement per 100,000 juveniles age 10 through the upper age of original juvenile court jurisdiction in each state. In the data, we are able to see Wyoming having the highest rate, whereas Connecticut having the lowest rate. 
+
+```{r, echo = F, message = F, include = T}
+ggplot(state_data) +
+  geom_polygon(
+    mapping = aes(x = long, y = lat, group = group, fill = Total),
+    color = "brown",
+    size = .1
+  ) +
+  coord_map() +
+  labs(fill = "Residential Placement Rate") +
+  scale_fill_continuous(
+    limits = c(0, max(state_data$Total)),
+    na.value = "white", low = "yellow", high = "red"
+  ) +
+  blank_theme +
+  ggtitle("Juvenile Residential Placement Rates by States in 2017")
+```
