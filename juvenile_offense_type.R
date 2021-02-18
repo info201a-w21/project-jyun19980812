@@ -2,7 +2,7 @@ library(tidyverse)
 library(ggplot2)
 library(scales)
 
-arrests <- read.csv("juv_offenses.csv", stringsAsFactors = F, check.names = F)
+arrests <- read.csv("data/juv_offenses.csv", stringsAsFactors = F, check.names = F)
 
 # Get the top ten offenses excluding the total and other offenses
 top_10 <- arrests %>%

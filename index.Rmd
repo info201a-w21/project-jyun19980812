@@ -28,7 +28,7 @@ Idea about Ryan's summary: Show which state has the lowest and highest incarcera
 ### Aggregated table of Juvenile Crime
 Text goes in here
 
-### Chart 1
+### Bar Chart on Top 10 Juvenile Offenses
 **Purpose:**
 The bar chart represents the frequencies of the juvenile crime offenses,
 specifically the top ten offenses in 2019.
@@ -38,7 +38,6 @@ The leading juvenile offense is `r leading_offense` with over
 `r format(leading_num, big.mark = ",")` arrests, followed by `r second_highest`
 with `r format(second_num, big.mark = ",")`
 
-### Bar Chart on Top 10 Juvenile Offenses
 ```{r echo= F}
 bar_chart
 ```
