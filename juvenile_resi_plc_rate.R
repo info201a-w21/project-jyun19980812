@@ -38,7 +38,7 @@ blank_theme <- theme_bw() +
 
 # Creating a map that shows the total juvenile residential placement rate 
 # in U.S. varied by states
-ggplot(state_data) +
+data_of_map <- ggplot(state_data) +
   geom_polygon(
     mapping = aes(x = long, y = lat, group = group, fill = Total),
     color = "brown",
