@@ -7,6 +7,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 source("juvenile_arrest_rate.R")
+source("juvenile_offense_type.R")
 ```
 
 ### Introduction
@@ -27,6 +28,19 @@ Idea about Ryan's summary: Show which state has the lowest and highest incarcera
 Text goes in here
 
 ### Chart 1
+**Purpose:**
+The bar chart represents the frequencies of the juvenile crime offenses,
+specifically the top ten offenses in 2019.
+
+**Observations**
+The leading juvenile offense is `r leading_offense` with over 
+`r format(leading_num, big.mark = ",")` arrests, followed by `r second_highest`
+with `r format(second_num, big.mark = ",")`
+
+### Bar Chart on Top 10 Juvenile Offenses
+```{r echo= F}
+bar_chart
+```
 
 ### Chart 2
 
