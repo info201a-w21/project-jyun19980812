@@ -12,7 +12,7 @@ rates_by_race_long <- gather(
 )
 
 # Create a line chart of rates of juvenile arrests by race and over time
-ggplot(data = rates_by_race_long) +
+scatter_plot <- ggplot(data = rates_by_race_long) +
   geom_line(
     mapping = aes(x = Year, y = Rates, color = Race)
   ) +
