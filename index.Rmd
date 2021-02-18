@@ -45,7 +45,8 @@ bar_chart
 
 ### Chart on Rates of Juvenile Arrests by Race Over Time
 **Purpose:**
-This chart is intended to show the change in rates of juvenile arrests by race from 1980 t0 2019. This visualization can help illustrate trends and patterns for specific races and time periods.
+This chart is intended to show the change in rates of juvenile arrests by race from 1980 to 2019. This visualization can help illustrate trends and patterns for specific races and time periods.
+
 **Observations:**
 The rate of arrests are per 100,000 persons from ages 10-17. The chart shows that there was an increase of arrests between 1990 and 2000 and since then, there has been a gradual decline for all races. We can also see while the rates for all races follow the same trends, Black juveniles have the highest overall rate of arrest and Asian juveniles have the lowest
 ```{r, echo = F, message = F, include = T}
