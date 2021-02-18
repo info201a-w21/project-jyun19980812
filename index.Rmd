@@ -6,7 +6,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source("juvenile_arrest_rate.R")
+source("juvenile_resi_plc_rate.R")
+source("juvenile_arrests_by_race.R")
 ```
 
 ### Introduction
@@ -29,6 +30,19 @@ Text goes in here
 ### Chart 1
 
 ### Chart 2
+```{r, echo = F, message = F, include = T}
+ggplot(data = rates_by_race_long) +
+  geom_line(
+    mapping = aes(x = Year, y = Rates, color = Race)
+  ) +
+
+  labs(
+    title = "Arrests Rates of Juveniles by Race (All Offenses)",
+    x = "Year",
+    y = "Rate of Arrests (per 100,000 Persons)",
+    color = "Race"
+  )
+```
 
 ### Chart on Variation Of Total Juvenile Residential Placement Rates By States
 **Purpose:** 

@@ -14,7 +14,7 @@ library(styler)
 
 # Creating a table that has information about the total residential placement 
 # rate of juveniles.
-rates_of_resi_pl<- read.csv(file = "Juvenile Residential Placement.csv") %>%
+rates_of_resi_pl<- read.csv(file = "data/Juvenile Residential Placement.csv") %>%
   mutate(State = tolower(State.of.offense)) %>% 
   select(State, Total)
 
