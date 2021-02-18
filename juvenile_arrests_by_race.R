@@ -1,7 +1,7 @@
 library(tidyverse)
 library(ggplot2)
 
-rates_by_race <- read.csv("arrest_rates_by_race.csv", check.names = FALSE)
+rates_by_race <- read.csv("data/arrest_rates_by_race.csv", check.names = FALSE)
 
 # Reshape data by gathering rates into a single feature
 rates_by_race_long <- gather(

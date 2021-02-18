@@ -6,7 +6,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source("juvenile_arrest_rate.R")
+source("juvenile_resi_plc_rate.R")
+source("juvenile_arrests_by_race.R")
 source("juvenile_offense_type.R")
 ```
 
@@ -20,7 +21,7 @@ _Some data-driven questions that we hope to answer are:_
  2. What are the demographic characteristics of juvenile arrests?
 
  3. Which state or region of the U.S. does juvenile incarceration seem most prevalent?
- 
+
 ### Summary of Juvenile Crime
 Text goes in here
 Idea about Ryan's summary: Show which state has the lowest and highest incarceration rate
@@ -33,7 +34,7 @@ The bar chart represents the frequencies of the juvenile crime offenses,
 specifically the top ten offenses in 2019.
 
 **Observations**
-The leading juvenile offense is `r leading_offense` with over 
+The leading juvenile offense is `r leading_offense` with over
 `r format(leading_num, big.mark = ",")` arrests, followed by `r second_highest`
 with `r format(second_num, big.mark = ",")`
 
@@ -43,13 +44,26 @@ bar_chart
 ```
 
 ### Chart 2
+```{r, echo = F, message = F, include = T}
+ggplot(data = rates_by_race_long) +
+  geom_line(
+    mapping = aes(x = Year, y = Rates, color = Race)
+  ) +
+
+  labs(
+    title = "Arrests Rates of Juveniles by Race (All Offenses)",
+    x = "Year",
+    y = "Rate of Arrests (per 100,000 Persons)",
+    color = "Race"
+  )
+```
 
 ### Chart on Variation Of Total Juvenile Residential Placement Rates By States
-**Purpose:** 
+**Purpose:**
 - This chart was intended to show the information of the total juvenile residential placement rate in U.S. varied by states in 2017. This chart is to show which state or region the juvenile incarceration seems most prevalent.
 
 **Observations**
-- The residential placement rate is the number of juvenile offenders in residential placement per 100,000 juveniles age 10 through the upper age of original juvenile court jurisdiction in each state. In the data, we are able to see Wyoming having the highest rate, whereas Connecticut having the lowest rate. 
+- The residential placement rate is the number of juvenile offenders in residential placement per 100,000 juveniles age 10 through the upper age of original juvenile court jurisdiction in each state. In the data, we are able to see Wyoming having the highest rate, whereas Connecticut having the lowest rate.
 
 ```{r, echo = F, message = F, include = T}
 ggplot(state_data) +
