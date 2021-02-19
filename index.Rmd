@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 source("juvenile_resi_plc_rate.R")
 source("juvenile_arrests_by_race.R")
 source("juvenile_offense_type.R")
+source("summary_info.R")
 ```
 
 ### Introduction
@@ -18,14 +19,20 @@ _Some data-driven questions that we hope to answer are:_
 
  1. What are the overall proportions of offenses caused by juveniles?
 
- 2. What are the demographic characteristics of juvenile arrests?
+ 2. How have the rates of juvenile arrests changed over time?
 
  3. Which state or region of the U.S. does juvenile incarceration seem most prevalent?
 
-### Summary of Juvenile Crime
-Text goes in here
-Idea about Ryan's summary: Show which state has the lowest and highest incarceration rate
-### Aggregated table of Juvenile Crime
+### Summary of Juvenile Crime Data
+Based on the data, we have determined that the leading offense committed by juveniles 
+(ages 0-17) is simple assault, making up `r summary_info$prop_of_juveniles` of all offenses
+committed by juveniles. `r summary_info$highest_average` juveniles have the greatest average
+arrest rate in the last 40 years, while `r summary_info$lowest_average` juveniles have the 
+lowest arrest rate. Furthermore, `r summary_info$highest_resi_pl_rate` is the state with the
+highest rate of juvenile residential placement and `r summary_info$lowest_resi_pl_rate` has
+the lowest rate of juvenile residential placement. 
+
+### Aggregated table of Juvenile Crime Data
 Text goes in here
 
 ### Bar Chart on Top 10 Juvenile Offenses
@@ -47,7 +54,8 @@ bar_chart
 This chart is intended to show the change in rates of juvenile arrests by race from 1980 to 2019. This visualization can help illustrate trends and patterns for specific races and time periods.
 
 **Observations:**
-The rate of arrests are per 100,000 persons from ages 10-17. The chart shows that there was an increase of arrests between 1990 and 2000 and since then, there has been a gradual decline for all races. We can also see while the rates for all races follow the same trends, Black juveniles have the highest overall rate of arrest and Asian juveniles have the lowest
+The rate of arrests are per 100,000 persons from ages 10-17. The chart shows that there was an increase of arrests between 1990 and 2000 and since then, there has been a gradual decline for all races. We can also see while the rates for all races follow the same trends, Black juveniles have the highest overall rate of arrest and Asian juveniles have the lowest.
+
 ```{r, echo = F, message = F, include = T}
 scatter_plot
 ```

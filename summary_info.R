@@ -3,7 +3,7 @@ library(tidyverse)
 
 # Calling csv files
 arrests <- read.csv("data/juv_offenses.csv", stringsAsFactors = F, check.names = F)
-rates_by_race <- read.csv("data/arrest_rates_by_race.csv", check.names = FALSE)
+rates_by_race <- read.csv("data/arrest_rates_by_race.csv", check.names = F)
 rates_of_resi_pl<- read.csv(file = "data/Juvenile Residential Placement.csv")
 
 # Calculate the proportion of the leading juvenile offense
@@ -37,17 +37,17 @@ average_per_race <- rates_by_race_long %>%
   group_by(Race) %>% 
   summarise(average_rate = mean(Rates, na.rm = T))
 
-# Identify the race with highest average rate
+# Identify the race with highest average rate of arrest
 highest_average <- average_per_race %>% 
-  filter(average_rate == max(average_rate, na.rm = T)) %>% 
+  filter(average_rate == max(average_rate)) %>% 
   pull(Race)
 
-# Identify the race with lowest average rate
+# Identify the race with lowest average rate of arrest
 lowest_average <- average_per_race %>% 
-  filter(average_rate == min(average_rate, na.rm = T)) %>% 
+  filter(average_rate == min(average_rate)) %>% 
   pull(Race)
 
-# calculate the state with the highest juvenile residential placement rate and
+# Calculate the state with the highest juvenile residential placement rate and
 # the lowest juvenile residential placement rate.
 # Select the column of interest
 total_rates <- rates_of_resi_pl %>% 
@@ -63,7 +63,7 @@ lowest_resi_pl_rate <- total_rates %>%
   filter(Total == min(Total)) %>% 
   pull(State.of.offense)
 
-# Taking the summary information into the list.
+# Storing the summary information into list.
 summary_info <- list()
 summary_info$prop_of_juveniles <- prop_of_juveniles
 summary_info$highest_average <- highest_average
