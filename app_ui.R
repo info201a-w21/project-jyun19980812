@@ -19,6 +19,7 @@ interactive1_panel <- tabPanel(
 
 # widgets in sidebar
 race_sidebar <- sidebarPanel(
+  h2("Juvenile Arrests by Race"),
 
   selectInput(
     inputId = "race",
@@ -52,9 +53,8 @@ race_main_panel <- mainPanel(
 )
 
 # put page together
-interactive2_panel <- tabPanel(
+race_plot_panel <- tabPanel(
   "Race",
-  h1("Juvenile Arrests by Race"),
   race_sidebar,
   race_main_panel
 )
@@ -99,9 +99,8 @@ summary_panel <- tabPanel(
 ui <- navbarPage(
   "Juvenile Incarceration",
   intro_panel,
-  #interactive1_panel,
-  #interactive2_panel,
-  #interactive3_panel,
+  interactive1_panel,
+  race_plot_panel,
   map_panel,
   summary_panel
 )
