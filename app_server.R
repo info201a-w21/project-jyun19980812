@@ -20,7 +20,11 @@ server <- function(input, output) {
   # Casey -----------------------
   race_data <- reactive({
     rates_by_race %>%
-      select("Year", input$race)
+      select("Year", input$race) %>%
+      filter(
+        Year >= input$race_year_range[1],
+        Year <= input$race_year_range[2]
+      )
   })
   
   output$race_plot <- renderPlotly({
@@ -35,9 +39,11 @@ server <- function(input, output) {
       x = "Year",
       y = "Rate of Arrests (per 100,000 Persons)"
     )
+    
     ggplotly(race_plot)
   })
 
   # Ryan -----------------------
-  
+
+
 }

@@ -15,30 +15,43 @@ interactive1_panel <- tabPanel(
 )
 
 
-# Casey -----------------------
+# Casey (Arrests rates by race) -----------------------
 
+# widgets in sidebar
 race_sidebar <- sidebarPanel(
+
   selectInput(
     inputId = "race",
-    label = "Select a race:",
+    label = h3("Select a race:"),
     choices = c(
       "White", "Black", "Asian", "Minority",
       "American Indian" = "American.Indian"
     )
   ),
   
+  sliderInput(
+    inputId = "race_year_range", 
+    label = h3("Select a year range:"),
+    sep = "",
+    min = 1980, 
+    max = 2019,
+    value = c(1980, 2019)
+  ),
+
   selectInput(
     inputId = "race_color",
-    label = "Select color:",
-    choices = c("Blue", "Black", "Red", "Orange", "Green")
+    label = h3("Select color:"),
+    choices = c("Black", "Blue", "Red", "Orange", "Green")
   )
 )
 
+# main panel with plot
 race_main_panel <- mainPanel(
   titlePanel("Arrests Over Time"),
   plotlyOutput(outputId = "race_plot")
 )
 
+# put page together
 interactive2_panel <- tabPanel(
   "Race",
   h1("Juvenile Arrests by Race"),
