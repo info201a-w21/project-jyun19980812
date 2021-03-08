@@ -41,6 +41,7 @@ interactive1_panel <- tabPanel(
 
 # widgets in sidebar
 race_sidebar <- sidebarPanel(
+  h2("Juvenile Arrests by Race"),
 
   selectInput(
     inputId = "race",
@@ -50,12 +51,12 @@ race_sidebar <- sidebarPanel(
       "American Indian" = "American.Indian"
     )
   ),
-  
+
   sliderInput(
-    inputId = "race_year_range", 
+    inputId = "race_year_range",
     label = h3("Select a year range:"),
     sep = "",
-    min = 1980, 
+    min = 1980,
     max = 2019,
     value = c(1980, 2019)
   ),
@@ -74,9 +75,8 @@ race_main_panel <- mainPanel(
 )
 
 # put page together
-interactive2_panel <- tabPanel(
+race_plot_panel <- tabPanel(
   "Race",
-  h1("Juvenile Arrests by Race"),
   race_sidebar,
   race_main_panel
 )
@@ -92,11 +92,11 @@ map_layout <- sidebarLayout(
   sidebarPanel(
     h2("Map on Juvenile Residential Placement Rate in 2017"),
     p("It is important to see the rate of juvenile being incarcerated.
-      This chart was intended to show the information of the total juvenile 
-      residential placement rate in U.S. varied by states in 2017. 
-      This chart is interactive, which means that the user is able to select 
-      the State to see the rate of that state's juvenile residential placement 
-      in 2017, and compare with other state or region to see which state the 
+      This chart was intended to show the information of the total juvenile
+      residential placement rate in U.S. varied by states in 2017.
+      This chart is interactive, which means that the user is able to select
+      the State to see the rate of that state's juvenile residential placement
+      in 2017, and compare with other state or region to see which state the
       juvenile incarceration seems most prevalent."),
     selectInput(
       inputId = "state_name",
@@ -122,8 +122,7 @@ ui <- navbarPage(
   "Juvenile Incarceration",
   intro_panel,
   interactive1_panel,
-  interactive2_panel,
-  #interactive3_panel,
+  race_plot_panel,
   map_panel,
   summary_panel
 )
