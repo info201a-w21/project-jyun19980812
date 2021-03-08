@@ -31,7 +31,7 @@ offense_type <- sidebarLayout(
 )
 
 interactive1_panel <- tabPanel(
-  "Interactive 1",
+  "Juvenile Offenses",
   h1("Juvenile Arrests By Offense Type"),
   offense_type
 )
