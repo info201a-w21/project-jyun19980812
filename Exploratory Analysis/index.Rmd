@@ -6,10 +6,12 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
 source("juvenile_resi_plc_rate.R")
 source("juvenile_arrests_by_race.R")
 source("juvenile_offense_type.R")
 source("summary_info.R")
+source("aggregate_table.R")
 ```
 
 ### Introduction
@@ -33,7 +35,13 @@ highest rate of juvenile residential placement and `r summary_info$lowest_resi_p
 the lowest rate of juvenile residential placement. 
 
 ### Aggregated table of Juvenile Crime Data
-Text goes in here
+We have included this table to show time trends on average juvenile arrests rate by each year.
+This table reveals that from the year of **1980** through **1996**, the average rate was increasing,
+and in **early 2000**, the rates started to go down.
+
+```{r aggregated_table, echo= F}
+kable(aggregated_table, col.names = c("Year", "Average Arrests of All The Races"))
+```
 
 ### Bar Chart on Top 10 Juvenile Offenses
 **Purpose:**
