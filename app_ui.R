@@ -9,9 +9,31 @@ intro_panel <- tabPanel(
 
 # Kelly -----------------------
 
+offense_type <- sidebarLayout(
+  sidebarPanel(
+    num_bins <- sliderInput(
+      inputId = "bins",
+      label = "Choose the number of bins",
+      min = 1,
+      max = 20,
+      value = 10
+    ),
+    bin_width <- sliderInput(
+      inputId = "width",
+      label = "Change the width of the bins",
+      min = 0,
+      max = 1,
+      value = 0.5)
+  ),
+  mainPanel(
+    plotlyOutput(outputId = "chart")
+  )
+)
+
 interactive1_panel <- tabPanel(
   "Interactive 1",
-  h1("Kelly's Interactive")
+  h1("Juvenile Arrests By Offense Type"),
+  offense_type
 )
 
 
@@ -99,8 +121,8 @@ summary_panel <- tabPanel(
 ui <- navbarPage(
   "Juvenile Incarceration",
   intro_panel,
-  #interactive1_panel,
-  #interactive2_panel,
+  interactive1_panel,
+  interactive2_panel,
   #interactive3_panel,
   map_panel,
   summary_panel

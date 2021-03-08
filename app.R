@@ -2,6 +2,7 @@
 
 #Load packages
 library(shiny)
+library(scales)
 
 # Source the app_server and app_ui
 source("app_server.R")

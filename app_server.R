@@ -13,8 +13,28 @@ rates_by_race <- read.csv("Data/arrest_rates_by_race.csv")
 server <- function(input, output) {
   
   # Kelly -----------------------
-
-
+  output$chart <- renderPlotly({
+    chart_data <- arrests %>% 
+      top_n(input$bins + 2, wt = `0 to 17`)
+    
+    chart_data <- chart_data[-c(1, 2), ]
+    
+    my_plot <- ggplot(data = chart_data) +
+      geom_col(
+        mapping = aes(x = reorder(Offenses, `0 to 17`), y = `0 to 17`),
+        width = input$width
+      ) +
+      scale_y_continuous(labels = comma, n.breaks = 8) +
+      theme(axis.text.x = element_text(angle = 25, hjust = 1)) +
+      labs(
+        x = "Offense Type",
+        y = "Number of Arrests",
+        title = paste0("Top ", input$bins , " Juvenile Offense Types")
+      ) +
+      coord_flip()
+    
+    ggplotly(my_plot)
+  })
 
 
   # Casey -----------------------
