@@ -115,5 +115,21 @@ server <- function(input, output) {
       ggtitle("Juvenile Residential Placement Rates by States in 2017")
     return(map_of_juvenile)
   })
+  output$table <- renderTable({
+    #Make a scatterplot instead of table, that shows the average arrests of 
+    #all races, and include it in ui.
+  rates_by_race_long <- gather(
+    rates_by_race,
+    key = Race,
+    value = Rates,
+    -Year
+  )
+  
+  aggregated_table <- rates_by_race_long %>% 
+    group_by(Year) %>% 
+    summarise(avg_of_races = round(mean(Rates, na.rm = T), digits = 0)) #%>% 
+    colnames(aggregated_table) <- c("Year", "Average Arrests of All The Races")
+  return(aggregated_table)
+  })
 
 }

@@ -4,7 +4,25 @@ library(shiny)
 
 intro_panel <- tabPanel(
   "Introduction",
-  h1("Introduction")
+  tags$h2("Introduction of Juvenile Arrest"),
+  tags$div(
+    tags$img(alt = "Juvenile Incarceration", src = "photo-1.jpg")
+           ),
+  tags$p("Many people, including members of our group, have noticed a growing concern
+    about crimes committed by young adolescents and the rate of juvenile 
+    incarceration in the U.S. This provoked our group to research juvenile crime
+    and incarceration, compare the rates of occurrence, and analyze the racial 
+    and gender factors that may show inequality in these crimes. We want to ask
+    these questions about patterns in the rates of crime, where these crimes are
+    happening, and who are committing these crimes because this type of 
+    information influences government attitudes and policy making."),
+  tags$em("Some data-driven questions that we hope to answer are:"),
+  tags$ul(
+    tags$li("What are the overall proportions of offenses caused by juveniles?"),
+    tags$li("How have the rates of juvenile arrests changed over time?"),
+    tags$li("Which state or region of the U.S. does juvenile incarceration seem most prevalent?")
+  )
+  
 )
 
 # Kelly -----------------------
@@ -114,7 +132,32 @@ map_panel <- tabPanel("Map of Juvenile Placement", map_layout)
 # Panel for Summary -------------------------------------------------------
 summary_panel <- tabPanel(
   "Summary",
-  h1("Summary")
+  tags$h2("Summary takeaways of the project"),
+  #tags$div(
+  #  tags$img(alt = "Juvenile Incarceration", src = "photo-1.jpg")
+  #),
+  #tags$p(""),
+  tags$strong("Our summary takeaways are listed below:"),
+  tags$ul(
+    tags$li("The leading juvenile offense is 126130 with over 126,130 arrests,
+            followed by Property Crime Index with 119,790"),
+    tags$li("The rate of arrests are per 100,000 persons from ages 10-17. 
+            The chart shows that there was an increase of arrests between 1990 
+            and 2000 and since then, there has been a gradual decline for all 
+            races. We can also see while the rates for all races follow the same
+            trends, Black juveniles have the highest overall rate of arrest and 
+            Asian juveniles have the lowest."),
+    tags$li("The residential placement rate is the number of juvenile offenders
+            in residential placement per 100,000 juveniles age 10 through the 
+            upper age of original juvenile court jurisdiction in each state. 
+            In the data, we are able to see Wyoming having the highest rate, 
+            whereas Connecticut having the lowest rate.")
+  ),
+  tags$p("We have included this table to show time trends on average juvenile 
+         arrests rate by each year. This table reveals that from the year of 
+         1980 through 1996, the average rate was increasing, and in early 2000,
+         the rates started to go down."),
+  tableOutput(outputId = "table")
 )
 
 
