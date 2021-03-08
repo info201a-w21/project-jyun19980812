@@ -153,11 +153,12 @@ summary_panel <- tabPanel(
             In the data, we are able to see Wyoming having the highest rate, 
             whereas Connecticut having the lowest rate.")
   ),
-  tags$p("We have included this table to show time trends on average juvenile 
-         arrests rate by each year. This table reveals that from the year of 
-         1980 through 1996, the average rate was increasing, and in early 2000,
-         the rates started to go down."),
-  tableOutput(outputId = "table")
+  tags$p("We have included this scatterplot to show time trends on average  
+         juvenile arrests rate by each year, varied by race. This plot reveals 
+         that from the year of 1980 through 1996, the average rate of juvenile 
+         arrest rates were increasing, and in early 2000, the rates started 
+         to go down."),
+  plotOutput(outputId = "scatter_plot")
 )
 
 

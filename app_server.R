@@ -12,7 +12,7 @@ rates_by_race <- read.csv("Data/arrest_rates_by_race.csv")
 
 server <- function(input, output) {
   
-  # Kelly -----------------------
+# Making chart about juvenile offense type and compare. -------------------
   output$chart <- renderPlotly({
     chart_data <- arrests %>% 
       top_n(input$bins + 2, wt = `0 to 17`)
@@ -37,7 +37,8 @@ server <- function(input, output) {
   })
 
 
-  # Casey -----------------------
+# Making plot on differences of race in juvenile arrest -------------------
+
   race_data <- reactive({
     rates_by_race %>%
       select("Year", input$race) %>%
@@ -63,14 +64,8 @@ server <- function(input, output) {
     ggplotly(race_plot)
   })
 
-  # Ryan -----------------------
-  #rates_of_resi_pl<- data_resi_pl%>%
-    #mutate(State = tolower(State.of.offense)) %>% 
-    #select(State, Total)
 
-  #data_of_state <- map_data("state") #%>% 
-    #mutate(State = region) #%>%
-  #left_join(rates_of_resi_pl, by = "State")
+# Making map on juvenile residential placement rate -----------------------
   
   output$map <- renderPlot({
     # Selecting state to see the state of interest.
@@ -86,50 +81,47 @@ server <- function(input, output) {
       mutate(State = region) %>% 
       left_join(rates_of_resi_pl, by = "State")
     
-    # Define a minimalist theme for maps
-    blank_theme <- theme_bw() +
-      theme(
-        axis.line = element_blank(), # remove axis lines
-        axis.text = element_blank(), # remove axis labels
-        axis.ticks = element_blank(), # remove axis ticks
-        axis.title = element_blank(), # remove axis titles
-        plot.background = element_blank(), # remove gray background
-        panel.grid.major = element_blank(), # remove major grid lines
-        panel.grid.minor = element_blank(), # remove minor grid lines
-        panel.border = element_blank() # remove border around plot
-      )
-    
     # Creating a map that shows the total juvenile residential placement rate 
     # in U.S. varied by states
     map_of_juvenile <- ggplot(data_of_state) +
       geom_polygon(
         mapping = aes(x = long, y = lat, group = group, fill = Total),
-        color = "brown",
+        color = "gray",
         size = .1
       ) +
       coord_quickmap() +
-      labs(fill = "Residential Placement Rate") +
+      labs(title = paste("Juvenile Residential Placement Rates in ", state_input,  
+                         " of 2017"), fill = "Residential Placement Rate") +
       scale_fill_continuous(limits = c(0, max(data_resi_pl$Total)), 
                             na.value = "white", low = "yellow", high = "red") +
-      blank_theme +
-      ggtitle("Juvenile Residential Placement Rates by States in 2017")
+      theme_void() 
     return(map_of_juvenile)
   })
-  output$table <- renderTable({
-    #Make a scatterplot instead of table, that shows the average arrests of 
-    #all races, and include it in ui.
-  rates_by_race_long <- gather(
-    rates_by_race,
-    key = Race,
-    value = Rates,
-    -Year
-  )
+
+# Making plot that shows the average arrests of all races -----------------
   
-  aggregated_table <- rates_by_race_long %>% 
-    group_by(Year) %>% 
-    summarise(avg_of_races = round(mean(Rates, na.rm = T), digits = 0)) #%>% 
-    colnames(aggregated_table) <- c("Year", "Average Arrests of All The Races")
-  return(aggregated_table)
+  output$scatter_plot <- renderPlot({
+    # Make a scatterplot  that shows the average arrests of all races over the
+    # year of 1980 to 2019
+    rates_by_race_long <- gather(
+      rates_by_race,
+      key = Race,
+      value = Rates,
+      -Year
+    )
+      
+    plot_of_average_arrest <- ggplot(data = rates_by_race_long) +
+      geom_point(
+        mapping = aes(x = Year, y = Rates, color = Race),
+        alpha = .6
+      ) +
+      labs(
+        title = "Rate of Average Juvenile Arrests of All Races in 1980 to 2019",
+        x = "Time from 1980 to 2019",
+        y = "Average Juvenile Arrests Rate",
+        color = "Races"
+      )
+    return(plot_of_average_arrest)
   })
 
 }
