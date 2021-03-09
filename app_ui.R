@@ -3,24 +3,32 @@
 library(shiny)
 
 intro_panel <- tabPanel(
+
   "Introduction",
-  tags$h1("Introduction to Juvenile Arrest"),
+  tags$h1("Juvenile Incarceration in the United States"),
   tags$div(
     tags$img(alt = "Juvenile Incarceration", src = "photo-1.jpg")
   ),
+
   tags$h3("Motivations"),
-  tags$p("In recent years, they has been a growing concern towards crimes
-        committed by adolescents and the rate of juvenile incarceration in the
-        U.S. This provoked our group to research juvenile crime and incarceration,
-        compare the rates of occurrence, and analyze the racial and gender
-        factors that may show inequality in these crimes. We want to ask these
-        questions about patterns in the rates of crime, where these crimes are
-        happening, and who are committing these crimes because this type of 
-        information influences government and public attitudes and policy
-        making."),
+  tags$p("In recent years, there has been a growing concern towards crimes
+        committed by adolescents, the rate of juvenile incarceration in the
+        United States, and what the consequences are of adolescents spending
+        time in jail. Studies have shown that juveniles who have spent time in
+        jail or prison perform worse in school than their peers and have an
+        increased chance of recidivism in their futures. This provoked our
+        research into juvenile crime and incarceration, their rates of
+        occurrence, and patterns in the racial and regional factors that
+        influence these crimes. We want to ask these questions about patterns in
+        the rates of crime, where incarceration is happening, and who are 
+        committing these crimes because this type of information influences
+        government and public attitudes and policy making."),
+
   tags$h3("Our Data"),
   tags$p("The data we are using comes from the U.S Department of Justice -
-         Office of Justice Programs."),
+         Office of Justice Programs. These datasets provide information on
+         different offenses committed by juveniles, rates of juvenile arrests,
+         and rates of arrest in each state across the United States."),
   tags$ul(
     tags$li(
       a("Juvenile Arrest Rate Trends by Race, 1980-2019",
@@ -35,17 +43,18 @@ intro_panel <- tabPanel(
         href="https://www.ojjdp.gov/ojstatbb/crime/ucr.asp?table_in=1&selYrs=2019&rdoGroups=1&rdoData=c")
     )
   ),
+
   tags$h3("Questions we hope to answer"),
   tags$ul(
-    tags$li("What kinds of offenses are juveniles committing?"),
+    tags$li("What kinds of offenses are juveniles committing and at what rates?"),
     tags$li("How have the rates of juvenile arrests changed over time?"),
-    tags$li("Which state or region of the U.S. does juvenile incarceration seem
+    tags$li("In which states or regions of the U.S. is juvenile incarceration
             most prevalent?")
   )
   
 )
 
-# Kelly -----------------------
+# Kelly - Arrests by Offense -----------------------
 
 offense_type <- sidebarLayout(
   sidebarPanel(
@@ -58,14 +67,14 @@ offense_type <- sidebarLayout(
     
     num_bins <- sliderInput(
       inputId = "bins",
-      label = "Choose the number of bins",
+      label = "Choose the number of bins:",
       min = 1,
       max = 20,
       value = 10
     ),
     bin_width <- sliderInput(
       inputId = "width",
-      label = "Change the width of the bins",
+      label = "Change the width of the bins:",
       min = 0,
       max = 1,
       value = 0.5)
@@ -75,13 +84,13 @@ offense_type <- sidebarLayout(
   )
 )
 
-interactive1_panel <- tabPanel(
+offenses_panel <- tabPanel(
   "Juvenile Offenses",
   offense_type
 )
 
 
-# Casey (Arrests rates by race) -----------------------
+# Casey - Arrests rates by race -----------------------
 
 # widgets in sidebar
 race_sidebar <- sidebarPanel(
@@ -128,7 +137,7 @@ race_plot_panel <- tabPanel(
 )
 
 
-# Ryan -----------------------
+# Ryan - Arrests by State -----------------------
 
 # Create Sidebar that shows dropdown menu which user can select.
 state_df <- data_resi_pl %>%
@@ -145,7 +154,7 @@ map_layout <- sidebarLayout(
       juvenile incarceration seems most prevalent."),
     selectInput(
       inputId = "state_name",
-      label = "State of Interest",
+      label = "State of Interest:",
       choices = state_df
     )
   ),
@@ -180,6 +189,12 @@ summary_panel <- tabPanel(
   tags$p("Our map showing rates of juvenile residenital placement gave us great
          insight into answering the question: where is juvenile incarceration
          most prevalant in the United States?"),
+  tags$p("Additionally, we were able to answer the question: what kinds of 
+         offenses are juveniles committing and at what rates?. identify which
+         offenses are committed most commonly by juveniles ages 0-17. Based on
+         the data, assault, propery crime, larcerny, drug abuse violations, and
+         disorderly conduct are among the top five crimes committed by this age
+         group in the United States."),
 
   tags$h3("Notable Observations"),
   tags$ul(
@@ -194,6 +209,7 @@ summary_panel <- tabPanel(
             residential placement and Connecticut has the lowest rate.")
   ),
 
+  tags$h3("Additional Information"),
   tags$p("Below, we have included this scatterplot to show time trends on average  
          juvenile arrests rate by each year, varied by race. This plot reveals 
          that from the year of 1980 through 1996, the average rate of juvenile 
@@ -206,7 +222,7 @@ summary_panel <- tabPanel(
 ui <- navbarPage(
   "Juvenile Incarceration",
   intro_panel,
-  interactive1_panel,
+  offenses_panel,
   race_plot_panel,
   map_panel,
   summary_panel

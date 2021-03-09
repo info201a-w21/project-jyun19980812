@@ -12,7 +12,7 @@ rates_by_race <- read.csv("Data/arrest_rates_by_race.csv")
 
 server <- function(input, output) {
   
-# Making chart about juvenile offense type and compare. -------------------
+# Juvenile offenses plot -------------------
   output$chart <- renderPlotly({
     chart_data <- arrests %>% 
       top_n(input$bins + 2, wt = `0 to 17`)
@@ -37,7 +37,7 @@ server <- function(input, output) {
   })
 
 
-# Making plot on differences of race in juvenile arrest -------------------
+# Juvenile arrest by race plot -------------------
 
   race_data <- reactive({
     rates_by_race %>%
@@ -65,7 +65,7 @@ server <- function(input, output) {
   })
 
 
-# Making map on juvenile residential placement rate -----------------------
+# Map of juvenile residential placement rate -----------------------
   
   output$map <- renderPlot({
     # Selecting state to see the state of interest.
@@ -101,7 +101,7 @@ server <- function(input, output) {
     return(map_of_juvenile)
   })
 
-# Making plot that shows the average arrests of all races -----------------
+# Plot that shows the average arrests of all races -----------------
   
   output$scatter_plot <- renderPlotly({
     # Make a scatterplot  that shows the average arrests of all races over the
