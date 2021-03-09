@@ -56,7 +56,7 @@ server <- function(input, output) {
     ) +
     
     labs(
-      title = "Arrests Rates of Race over Time (All Offenses)",
+      title = paste("Arrests Rates of", input$race, "Juveniles over Time"),
       x = "Year",
       y = "Rate of Arrests (per 100,000 Persons)"
     )
@@ -90,17 +90,20 @@ server <- function(input, output) {
         size = .1
       ) +
       coord_quickmap() +
-      labs(title = paste("Juvenile Residential Placement Rates in ", state_input,  
-                         " of 2017"), fill = "Residential Placement Rate") +
-      scale_fill_continuous(limits = c(0, max(data_resi_pl$Total)), 
+      labs(
+        title = paste("Juvenile Residential Placement Rates in ", state_input,  
+                      " in 2017"), 
+        fill = "Residential Placement Rate") +
+        scale_fill_continuous(limits = c(0, max(data_resi_pl$Total)), 
                             na.value = "white", low = "yellow", high = "red") +
-      theme_void() 
+      theme_void()
+    
     return(map_of_juvenile)
   })
 
 # Making plot that shows the average arrests of all races -----------------
   
-  output$scatter_plot <- renderPlot({
+  output$scatter_plot <- renderPlotly({
     # Make a scatterplot  that shows the average arrests of all races over the
     # year of 1980 to 2019
     rates_by_race_long <- gather(
@@ -115,13 +118,15 @@ server <- function(input, output) {
         mapping = aes(x = Year, y = Rates, color = Race),
         alpha = .6
       ) +
+      
       labs(
         title = "Rate of Average Juvenile Arrests of All Races in 1980 to 2019",
         x = "Time from 1980 to 2019",
         y = "Average Juvenile Arrests Rate",
         color = "Races"
       )
-    return(plot_of_average_arrest)
+    
+    ggplotly(plot_of_average_arrest)
   })
 
 }
