@@ -9,9 +9,8 @@ intro_panel <- tabPanel(
   
   tags$h3("Motivations"),
   tags$p("In recent years, there has been a growing concern towards crimes
-        committed by adolescents, the rate of juvenile incarceration in the
-        United States, and what the consequences are of adolescents spending
-        time in jail. Studies have shown that juveniles who have spent time in
+        committed by adolescents and the rate of juvenile incarceration in the
+        United States. Studies have shown that juveniles who have spent time in
         jail or prison perform worse in school than their peers and have an
         increased chance of recidivism in their futures. This provoked our
         research into juvenile crime and incarceration, their rates of
@@ -24,8 +23,9 @@ intro_panel <- tabPanel(
   tags$h3("Our Data"),
   tags$p("The data we are using comes from the U.S Department of Justice -
          Office of Justice Programs. These datasets provide information on
-         different offenses committed by juveniles, rates of juvenile arrests,
-         and rates of arrest in each state across the United States."),
+         different offenses committed by juveniles, rates of juvenile arrests
+         by race, and the rates of arrest in each state across the United
+         States."),
   tags$ul(
     tags$li(
       a("Juvenile Arrest Rate Trends by Race, 1980-2019",
@@ -196,7 +196,7 @@ summary_panel <- tabPanel(
          and 5 states had a high rate of juvenile placement (220 to 302 per
          100,000)."),
   tags$p("Additionally, we were able to answer the question: what kinds of
-         offenses are juveniles committing and at what rates?. identify which
+         offenses are juveniles committing and at what rates and identify which
          offenses are committed most commonly by juveniles ages 0-17. Based on
          the data, assault, propery crime, larcerny, drug abuse violations, and
          disorderly conduct are among the top five crimes committed by this age
@@ -208,7 +208,7 @@ summary_panel <- tabPanel(
             arrests, followed by property crime with 119,790 arrests."),
     tags$li("The peak of juvenile incarceration was between 1990 and 2000 and
             in the following years, there has been a gradual decline for all
-            races. We can also found while the rates for all races follow the 
+            races. We also found that while the rates for all races follow the 
             same trends, Black juveniles have the highest overall rate of 
             arrest and Asian juveniles have the lowest."),
     tags$li("We have found that Wyoming has the highest rate of juvenile
