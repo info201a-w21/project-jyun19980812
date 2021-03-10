@@ -92,7 +92,7 @@ server <- function(input, output) {
       coord_quickmap() +
       labs(
         title = paste("Juvenile Residential Placement Rates in ", state_input,  
-                      " in 2017"), 
+                      " in 2017 (per 100,000 persons)"), 
         fill = "Residential Placement Rate") +
         scale_fill_continuous(limits = c(0, max(data_resi_pl$Total)), 
                             na.value = "white", low = "yellow", high = "red") +

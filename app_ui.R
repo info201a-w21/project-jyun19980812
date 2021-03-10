@@ -20,7 +20,7 @@ intro_panel <- tabPanel(
         research into juvenile crime and incarceration, their rates of
         occurrence, and patterns in the racial and regional factors that
         influence these crimes. We want to ask these questions about patterns in
-        the rates of crime, where incarceration is happening, and who are 
+        the rates of crime, where incarceration is happening, and who are
         committing these crimes because this type of information influences
         government and public attitudes and policy making."),
 
@@ -32,15 +32,18 @@ intro_panel <- tabPanel(
   tags$ul(
     tags$li(
       a("Juvenile Arrest Rate Trends by Race, 1980-2019",
-      href="https://www.ojjdp.gov/ojstatbb/crime/JAR_Display.asp?ID=qa05260&selOffenses=1")
+      href = "https://www.ojjdp.gov/ojstatbb/crime/JAR_Display.asp?ID=qa05260&selOffenses=1",
+      target = "_blank")
     ),
     tags$li(
       a("Juvenile Residential Placement Rates, 2017",
-        href="https://www.ojjdp.gov/ojstatbb/corrections/qa08601.asp?qaDate=2017")
+      href = "https://www.ojjdp.gov/ojstatbb/corrections/qa08601.asp?qaDate=2017",
+      target = "_blank")
     ),
     tags$li(
       a("Juvenile Arrests by Offense and Age group, 2019",
-        href="https://www.ojjdp.gov/ojstatbb/crime/ucr.asp?table_in=1&selYrs=2019&rdoGroups=1&rdoData=c")
+      href = "https://www.ojjdp.gov/ojstatbb/crime/ucr.asp?table_in=1&selYrs=2019&rdoGroups=1&rdoData=c",
+      target = "_blank")
     )
   ),
 
@@ -51,20 +54,20 @@ intro_panel <- tabPanel(
     tags$li("In which states or regions of the U.S. is juvenile incarceration
             most prevalent?")
   )
-  
+
 )
 
 # Kelly - Arrests by Offense -----------------------
 
 offense_type <- sidebarLayout(
   sidebarPanel(
-    
+
     h2("Juvenile Arrests By Offense Type"),
     p("This interactive chart is designed to display information about juvenile
       arrests by offense. Users can select up to 20 of the top offenses committed
       by juveniles. This can help to reveal which offenses are most relevant
       and at what rates they occur."),
-    
+
     num_bins <- sliderInput(
       inputId = "bins",
       label = "Choose the number of bins:",
@@ -146,12 +149,13 @@ state_df <- data_resi_pl %>%
 map_layout <- sidebarLayout(
   sidebarPanel(
     h2("Map on Juvenile Residential Placement Rate in 2017"),
-    p("This chart was intended to show the information of the total juvenile
+    p("This chart is intended to show the information of the total juvenile
       residential placement rate in U.S. varied by states in 2017.
-      This chart is interactive, which means that the user is able to select
-      the State to see the rate of that state's juvenile residential placement
-      in 2017, and compare with other state or region to see which state the
-      juvenile incarceration seems most prevalent."),
+      The residential placement rate is the number of juvenile offenders in
+      residential placement ages 10 through the upper age
+      of original juvenile court jurisdiction in each state.
+      This chart is interactive, allowing the user to display a specific state's
+      juvenile residential placement."),
     selectInput(
       inputId = "state_name",
       label = "State of Interest:",
@@ -181,15 +185,21 @@ summary_panel <- tabPanel(
   tags$h3("Major Trends"),
   tags$p("We were able to uncover trends in the rates of juvenile incaraceration
          across different races over time. From our line plot, we have
-         identified that all all races have seen a decrease in incarceration
+         identified that all races have seen a decrease in incarceration
          over the years. This helps us to answer our question, how have the
          rates of juvenile arrests changed overtime? Our observations goes
          against our initial prediction that juvenile incarceration has
          increased in recent years."),
-  tags$p("Our map showing rates of juvenile residenital placement gave us great
+  tags$p("Our map showing rates of juvenile residenital placement give us great
          insight into answering the question: where is juvenile incarceration
-         most prevalant in the United States?"),
-  tags$p("Additionally, we were able to answer the question: what kinds of 
+         most prevalant in the United States? We saw a broad range of
+         residential placement rates in 2017 - from 27 to 302 per 100,000
+         juveniles. We found that 26 states have a low to moderately low rate of
+         residential placement (27 to 138 per 100,000); 20 states have a
+         moderately high rate of juvenile placement (138 to 219 per 100,000);
+         and 5 states had a high rate of juvenile placement (220 to 302 per
+         100,000)."),
+  tags$p("Additionally, we were able to answer the question: what kinds of
          offenses are juveniles committing and at what rates?. identify which
          offenses are committed most commonly by juveniles ages 0-17. Based on
          the data, assault, propery crime, larcerny, drug abuse violations, and
@@ -201,20 +211,20 @@ summary_panel <- tabPanel(
     tags$li("The leading juvenile offense is simple assault with over 126,130
             arrests, followed by property crime with 119,790 arrests."),
     tags$li("The peak of juvenile incarceration was between 1990 and 2000 and
-            in the following years, there has been a gradual decline for all 
+            in the following years, there has been a gradual decline for all
             races. We can also found while the rates for all races follow the same
-            trends, Black juveniles have the highest overall rate of arrest and 
+            trends, Black juveniles have the highest overall rate of arrest and
             Asian juveniles have the lowest."),
     tags$li("We have found that Wyoming has the highest rate of juvenile
             residential placement and Connecticut has the lowest rate.")
   ),
 
-  tags$h3("Additional Information"),
-  tags$p("Below, we have included this scatterplot to show time trends on average  
-         juvenile arrests rate by each year, varied by race. This plot reveals 
-         that from the year of 1980 through 1996, the average rate of juvenile 
-         arrest rates increased, and in early 2000, the rates started 
-         to go down."),
+  tags$h3("Related Findings"),
+  tags$p("Below, we have included a scatterplot to show the average
+         juvenile arrests varied by race over time. This plot reveals
+         that from the year of 1980 through 1996, the average rate of juvenile
+         arrest rates increased, and in early 2000, the rates started
+         to go down, much like we observed previously in our line plot."),
   plotlyOutput(outputId = "scatter_plot")
 )
 
