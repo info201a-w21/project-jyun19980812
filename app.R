@@ -3,6 +3,9 @@
 #Load packages
 library(shiny)
 library(scales)
+library(tidyverse)
+library(maps)
+library(plotly)
 
 # Source the app_server and app_ui
 source("app_server.R")

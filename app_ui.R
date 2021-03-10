@@ -1,15 +1,12 @@
 # This is app_ui.R file.
 
-library(shiny)
-
 intro_panel <- tabPanel(
-
   "Introduction",
   tags$h1("Juvenile Incarceration in the United States"),
   tags$div(
     tags$img(alt = "Juvenile Incarceration", src = "photo-1.jpg")
   ),
-
+  
   tags$h3("Motivations"),
   tags$p("In recent years, there has been a growing concern towards crimes
         committed by adolescents, the rate of juvenile incarceration in the
@@ -32,41 +29,43 @@ intro_panel <- tabPanel(
   tags$ul(
     tags$li(
       a("Juvenile Arrest Rate Trends by Race, 1980-2019",
-      href = "https://www.ojjdp.gov/ojstatbb/crime/JAR_Display.asp?ID=qa05260&selOffenses=1",
-      target = "_blank")
+        href = "https://www.ojjdp.gov/ojstatbb/crime/JAR_Display.asp?ID=qa05260&selOffenses=1",
+        target = "_blank"
+      )
     ),
     tags$li(
       a("Juvenile Residential Placement Rates, 2017",
-      href = "https://www.ojjdp.gov/ojstatbb/corrections/qa08601.asp?qaDate=2017",
-      target = "_blank")
+        href = "https://www.ojjdp.gov/ojstatbb/corrections/qa08601.asp?qaDate=2017",
+        target = "_blank"
+      )
     ),
     tags$li(
       a("Juvenile Arrests by Offense and Age group, 2019",
-      href = "https://www.ojjdp.gov/ojstatbb/crime/ucr.asp?table_in=1&selYrs=2019&rdoGroups=1&rdoData=c",
-      target = "_blank")
+        href = "https://www.ojjdp.gov/ojstatbb/crime/ucr.asp?table_in=1&selYrs=2019&rdoGroups=1&rdoData=c",
+        target = "_blank"
+      )
     )
   ),
 
   tags$h3("Questions we hope to answer"),
   tags$ul(
-    tags$li("What kinds of offenses are juveniles committing and at what rates?"),
+    tags$li("What kinds of offenses are juveniles committing and at what 
+            rates?"),
     tags$li("How have the rates of juvenile arrests changed over time?"),
     tags$li("In which states or regions of the U.S. is juvenile incarceration
             most prevalent?")
   )
-
 )
 
 # Kelly - Arrests by Offense -----------------------
 
 offense_type <- sidebarLayout(
   sidebarPanel(
-
     h2("Juvenile Arrests By Offense Type"),
     p("This interactive chart is designed to display information about juvenile
-      arrests by offense. Users can select up to 20 of the top offenses committed
-      by juveniles. This can help to reveal which offenses are most relevant
-      and at what rates they occur."),
+      arrests by offense. Users can select up to 20 of the top offenses 
+      committed by juveniles. This can help to reveal which offenses are most 
+      relevant and at what rates they occur."),
 
     num_bins <- sliderInput(
       inputId = "bins",
@@ -80,7 +79,8 @@ offense_type <- sidebarLayout(
       label = "Change the width of the bins:",
       min = 0,
       max = 1,
-      value = 0.5)
+      value = 0.5
+    )
   ),
   mainPanel(
     plotlyOutput(outputId = "chart")
@@ -178,10 +178,6 @@ map_panel <- tabPanel(
 summary_panel <- tabPanel(
   "Summary",
   tags$h1("Our Findings"),
-  #tags$div(
-  #  tags$img(alt = "Juvenile Incarceration", src = "photo-1.jpg")
-  #),
-  #tags$p(""),
   tags$h3("Major Trends"),
   tags$p("We were able to uncover trends in the rates of juvenile incaraceration
          across different races over time. From our line plot, we have
@@ -212,9 +208,9 @@ summary_panel <- tabPanel(
             arrests, followed by property crime with 119,790 arrests."),
     tags$li("The peak of juvenile incarceration was between 1990 and 2000 and
             in the following years, there has been a gradual decline for all
-            races. We can also found while the rates for all races follow the same
-            trends, Black juveniles have the highest overall rate of arrest and
-            Asian juveniles have the lowest."),
+            races. We can also found while the rates for all races follow the 
+            same trends, Black juveniles have the highest overall rate of 
+            arrest and Asian juveniles have the lowest."),
     tags$li("We have found that Wyoming has the highest rate of juvenile
             residential placement and Connecticut has the lowest rate.")
   ),
@@ -235,5 +231,6 @@ ui <- navbarPage(
   offenses_panel,
   race_plot_panel,
   map_panel,
-  summary_panel
+  summary_panel,
+  includeCSS("styles.css")
 )

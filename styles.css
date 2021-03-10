@@ -1,0 +1,23 @@
+li{
+  opacity:.7;
+}
+
+li:hover{
+  opacity:1;
+  font-size:26px;
+}
+
+h1, h2 {
+  font-family: impact;
+  font-weight: 200;
+}
+
+p, li {
+  font-family: Times, Times New Roman, serif;
+  font-size: 20px;
+}
+
+h3 {
+  font-family: Times, Times New Roman, serif;
+  font-size: 30px;
+}
